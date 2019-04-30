@@ -10,7 +10,7 @@ logout <- function(){
     if(!is.null(photosynq.env$TOKEN) && photosynq.env$TOKEN != ""){
         if(!"httr" %in% rownames(installed.packages())){
             install.packages("httr")
-            library("httr",quietly = TRUE, warn.conflicts = FALSE, character.only = TRUE)
+            #library("httr",quietly = TRUE, warn.conflicts = FALSE, character.only = TRUE)
         }
         url <- paste(photosynq.env$API_DOMAIN,photosynq.env$API_PATH, "sign_out.json", sep="/")
         request <- httr::DELETE(url, body= list("auth_token" = photosynq.env$TOKEN))

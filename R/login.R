@@ -15,14 +15,13 @@ login <- function(email = "", url = photosynq.env$DEFAULT_API_DOMAIN){
     if(email !=""){
         if(!"httr" %in% rownames(installed.packages())){
             install.packages("httr")
-            library("httr",quietly = TRUE, warn.conflicts = FALSE, character.only = TRUE)
+            #library("httr",quietly = TRUE, warn.conflicts = FALSE, character.only = TRUE)
         }
-        getPassFound <- require("getPass",quietly = TRUE, warn.conflicts = FALSE, character.only = TRUE)
-        if(!getPassFound){
+        if(!"getPass" %in% rownames(installed.packages())){
             install.packages("getPass")
             library("getPass",quietly = TRUE, warn.conflicts = FALSE, character.only = TRUE)
         }
-        pwd <- getPass(msg = "Your PhotosynQ Password: ", forcemask = FALSE)
+        pwd <- getPass::getPass(msg = "Your PhotosynQ Password: ", forcemask = FALSE)
         if(is.null(pwd)){
             cat("Info: Login canceled.\n")
         }
@@ -38,7 +37,7 @@ login <- function(email = "", url = photosynq.env$DEFAULT_API_DOMAIN){
             cat("Warning: Failed to login.\n")
         }
         else{
-            content <- content(request)
+            content <- httr::content(request)
             if(length(content) == 0){
                 cat("Warning: Failed to login.\n")
             }

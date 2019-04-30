@@ -14,7 +14,7 @@ getProjectData <- function(projectID = "", processedData = TRUE, rawTraces = FAL
     if(!is.null(photosynq.env$TOKEN) && photosynq.env$TOKEN != "" && !is.null(photosynq.env$EMAIL) && photosynq.env$EMAIL != ""){
         if(!"httr" %in% rownames(installed.packages())){
             install.packages("httr")
-            library("httr",quietly = TRUE, warn.conflicts = FALSE, character.only = TRUE)
+            #library("httr",quietly = TRUE, warn.conflicts = FALSE, character.only = TRUE)
         }
         if(projectID != ""){
             url <- paste(photosynq.env$API_DOMAIN,photosynq.env$API_PATH, "projects",toString(projectID),"/data.json", sep="/")
@@ -24,7 +24,7 @@ getProjectData <- function(projectID = "", processedData = TRUE, rawTraces = FAL
                 cat("Warning: Failed collect Project data.\n")
                 return(NULL)
             }
-            content <- content(request)
+            content <- httr::content(request)
             if(content$status == "success"){
                 return(content$data)
             }
