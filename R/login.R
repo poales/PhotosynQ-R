@@ -13,8 +13,7 @@
 
 login <- function(email = "", url = photosynq.env$DEFAULT_API_DOMAIN){
     if(email !=""){
-        httrFound <- require("httr",quietly = TRUE, warn.conflicts = FALSE, character.only = TRUE)
-        if(!httrFound){
+        if(!"httr" %in% rownames(installed.packages())){
             install.packages("httr")
             library("httr",quietly = TRUE, warn.conflicts = FALSE, character.only = TRUE)
         }

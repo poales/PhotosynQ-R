@@ -9,8 +9,7 @@
 
 getProjectInfo <- function(projectID = ""){
     if(!is.null(photosynq.env$TOKEN) && photosynq.env$TOKEN != "" && !is.null(photosynq.env$EMAIL) && photosynq.env$EMAIL != ""){
-        httrFound <- require("httr",quietly = TRUE, warn.conflicts = FALSE, character.only = TRUE)
-        if(!httrFound){
+        if(!"httr" %in% rownames(installed.packages())){
             install.packages("httr")
             library("httr",quietly = TRUE, warn.conflicts = FALSE, character.only = TRUE)
         }
