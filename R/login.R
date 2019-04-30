@@ -15,7 +15,6 @@ login <- function(email = "", url = photosynq.env$DEFAULT_API_DOMAIN){
     if(email !=""){
         if(!"httr" %in% rownames(installed.packages())){
             install.packages("httr")
-            #library("httr",quietly = TRUE, warn.conflicts = FALSE, character.only = TRUE)
         }
         if(!"getPass" %in% rownames(installed.packages())){
             install.packages("getPass")
