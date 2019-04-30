@@ -20,7 +20,7 @@ getProjectData <- function(projectID = "", processedData = TRUE, rawTraces = FAL
             url <- paste(photosynq.env$API_DOMAIN,photosynq.env$API_PATH, "projects",toString(projectID),"/data.json", sep="/")
             url <- paste(url,"?user_email=",photosynq.env$EMAIL,"&user_token=",photosynq.env$TOKEN,"&upd=",processedData,"&include_raw_data=",rawTraces, sep="")
             request <- httr::GET(url)
-            if(status_code(request) == 500){
+            if(httr::status_code(request) == 500){
                 cat("Warning: Failed collect Project data.\n")
                 return(NULL)
             }

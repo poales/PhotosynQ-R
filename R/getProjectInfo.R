@@ -17,7 +17,7 @@ getProjectInfo <- function(projectID = ""){
             url <- paste(photosynq.env$API_DOMAIN,photosynq.env$API_PATH, "projects", toString(projectID), sep="/")
             url <- paste(url,".json?user_email=",photosynq.env$EMAIL,"&user_token=",photosynq.env$TOKEN, sep="")
             request <- httr::GET(url)
-            if(status_code(request) == 500){
+            if(httr::status_code(request) == 500){
                 cat("Warning: Failed to receive the project information.\n")
                 return(NULL)
             }

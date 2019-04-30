@@ -33,7 +33,7 @@ login <- function(email = "", url = photosynq.env$DEFAULT_API_DOMAIN){
         }
         url <- paste(url,photosynq.env$API_PATH, "sign_in.json", sep="/")
         request <- httr::POST(url, body= list("user[email]" = email,"user[password]" = pwd))
-        if(status_code(request) == 500){
+        if(httr::status_code(request) == 500){
             cat("Warning: Failed to login.\n")
         }
         else{
